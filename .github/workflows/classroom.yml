@@ -1,0 +1,17 @@
+---
+name: Scary Test Workflow
+
+on: push
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    if: github.actor != 'Bot'
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: "npm"
+      - name: What's my grade?
+        run: npm run test
