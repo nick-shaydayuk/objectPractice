@@ -1,12 +1,18 @@
 import test from 'node:test';
 import assert from 'assert/strict';
 
-import { isEmpty, isEmptyDeep, without, intersection, intersectionDeep } from '../index.js';
+import {
+  isEmpty,
+  isEmptyDeep,
+  without,
+  intersection,
+  intersectionDeep,
+} from '../index.js';
 
 test('task1', () => {
-  assert.strictEqual(isEmpty({a: true, b: false}), false);
-  assert.strictEqual(isEmpty({a: undefined, b: false}), false);
-  assert.strictEqual(isEmpty({a: undefined}), true);
+  assert.strictEqual(isEmpty({ a: true, b: false }), false);
+  assert.strictEqual(isEmpty({ a: undefined, b: false }), false);
+  assert.strictEqual(isEmpty({ a: undefined }), true);
   assert.strictEqual(isEmpty({}), true);
 });
 test('task2', () => {
@@ -22,5 +28,14 @@ test('task4', () => {
   assert.ok(intersection({ a: 1, b: 2, c: 1 }, { c: 1, b: 2 }), { c: 1, b: 2 });
 });
 test('task5', () => {
-  assert.ok(intersectionDeep({ a: 1, b: { c: 3 } }, { c: 1, b: { c: 3 } }), { b: { c: 3 } });
+  assert.ok(
+    intersectionDeep(
+      { a: 1, b: { c: 3, d: { e: 5 } } },
+      { c: 1, b: { c: 3, d: { e: 5 } } },
+    ),
+    { b: { c: 3 }, d: { e: 5 } },
+  );
+  assert.ok(intersectionDeep({ a: 1, b: { c: 3 } }, { c: 1, b: { c: 3 } }), {
+    b: { c: 3 },
+  });
 });
