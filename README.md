@@ -21,46 +21,46 @@
     isEmpty({}); // true
     ```
 
-### Задание №4
+### Задание №2
 
-Напишите функцию `isEmptyDeep()`, которая делает глубокую проверку на пустоту объекта. Воспользуйтесь функцией **at**.
+Напишите функцию `without()`, которая возвращает новый объект без указанных значений.. Воспользуйтесь **forEach** и деструктуризацией объекта.
 
 **Пример использования**
 
     ```javascript
-    isEmptyDeep({ a: 1, b: 2, c: 3 }, 'b', 'c'); // { a: 1 }
-    isEmptyDeep({ a: 1, b: 2, c: 3 }, 'a'); // { b: 2, c: 3 }
+    without({ a: 1, b: 2, c: 3 }, 'b', 'c'); // { a: 1 }
+    without({ a: 1, b: 2, c: 3 }, 'a'); // { b: 2, c: 3 }
     ```
 
 ### Задание №3
 
-Напишите функцию `without()`, которая возвращает новый объект без указанных значений.. Воспользуйтесь циклом **for** или методом **newArray**
+Напишите функцию `isEmptyDeep()`, которая делает глубокую проверку на пустоту объекта. Пустыми значениями считаются: '', null, NaN, undefined. Воспользуйтесь **Oblect.keys**, оператором **typeof** и **for of** циклом.
 
 **Пример использования**
 
     ```javascript
-    fill(4, 'someString'); // ['someString', 'someString', 'someString', 'someString']
-    fill(2, ['anotherString']); // [['anotherString'], ['anotherString']]
+    isEmptyDeep({}); // true
+    isEmptyDeep({ a: { b: undefined } }); // true
     ```
 
 ### Задание №4
 
-Напишите функцию ``, которая возвращает объект, составленный из значений вложенных массивов. Первое элемент массива - ключ, второй - зачение. Воспользуйтесь встроенной в язык функцией **reduce** у массивов, а также методом **Array.isArray**. Документацию вы найдёте [тут](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce) и ещё [тут](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray)
+Напишите функцию `intersection()`, которая поверхностно находит пересечения объектов и возвращает объект пересечений. Воспользуйтесь встроенной в язык функцией **reduce** у массивов, обратите внимание, что работа с аккумулятором в этот раз будет отличаться от прошлой практики по массивам, вам потребуется узнать, каким образом нужно записывать новую связку ключ-значение в него. А ещё не забывайте про деструктуризацию. Документацию вы найдёте [тут](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
 
-    *Пример использования**
+**Пример использования**
 
     ```javascript
-    fromPairs([['a', 1], ['b', 2]]); // { 'a': 1, 'b': 2 }
-    fromPairs([['someString', [2, 3]], ['b', 2]]); // { 'someString': [2, 3], 'b': 2 }
+    intersection({ a: 1, b: 2 }, { c: 1, b: 2 }); // { b: 2 }
+    intersection({ a: 1, b: 2, c: 1 }, { c: 1, b: 2 }); // { c: 1, b: 2 }
     ```
 
 ### Задание №5
 
-Напишите функцию ``, которая создаст массив из уникальных значений, которые есть в каждом из предоставленных массивов. Воспользуйтесь встроенной в язык функцией **filter** у массивов, а также методом **Array.from**. Документацию вы найдёте [тут](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) и ещё [тут](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/from)
+Напишите функцию `intersectionDeep()`, которая глубоко находит пересечения объектов и возвращает объект пересечений. Воспользуйтесь оператором **typeof**, а также рекурсивным вызовом вашей функции.
 
-    *Пример использования**
+**Пример использования**
 
     ```javascript
-    intersection([1, 2], [2, 3]); // [2]
-    intersection(['b', 'e', 'c'], ['b', 'b', 'e']); // ['b', 'e']
+    intersectionDeep({ a: 1, b: { c: 3 } }, { c: 1, b: { c: 3 } }); // { b: { c: 3 } }
+    intersectionDeep({ a: 1, b: { c: 3, d: { e: 5 } } }, { c: 1, b: { c: 3, d: { e: 5 } } }); // { b: { c: 3 }, d: { e: 5 } }
     ```
