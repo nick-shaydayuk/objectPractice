@@ -1,17 +1,19 @@
----
-name: Scary Test Workflow
+name: Tests CI
 
 on: push
 
+permissions: write-all
+
 jobs:
-  testing:
+  test:
     runs-on: ubuntu-latest
-    if: github.actor != 'Bot'
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - name: Test using Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: 20
-          cache: "npm"
-      - name: What's my grade?
-        run: npm run test
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - uses: education/autograding@v1

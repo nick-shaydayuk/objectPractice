@@ -41,6 +41,7 @@
     ```javascript
     isEmptyDeep({}); // true
     isEmptyDeep({ a: { b: undefined } }); // true
+    isEmptyDeep({ a: { b: undefined, c: undefined, d: { e: undefined, f: 1, g: undefined }}}) // false
     ```
 
 ### Задание №4
